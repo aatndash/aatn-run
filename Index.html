@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get It Done</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Get It Done - Task Posting</h1>
+  <form id="taskForm">
+    <input type="text" placeholder="Your Name" required><br>
+    <input type="text" placeholder="Task Title" required><br>
+    <textarea placeholder="Describe your task" required></textarea><br>
+    <button type="submit">Post Task</button>
+  </form>
+
+  <div id="taskList"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+
+form {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+input, textarea {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+}
+const form = document.getElementById('taskForm');
+const taskList = document.getElementById('taskList');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = form.elements[0].value;
+  const title = form.elements[1].value;
+  const description = form.elements[2].value;
+
+  const task = document.createElement('div');
+  task.innerHTML = `<h3>${title}</h3><p>${description}</p><small>Posted by: ${name}</small><hr>`;
+  taskList.appendChild(task);
+
+  form.reset();
+});
